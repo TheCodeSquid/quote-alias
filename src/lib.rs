@@ -71,6 +71,7 @@ macro_rules! alias {
         $crate::alias!(@struct $vis $ident ( $($tt)* ));
     };
     (@struct $vis:vis $ident:ident ( $($tt:tt)* )) => {
+        #[allow(non_camel_case_types)]
         #[derive(Clone, Copy, Debug)]
         $vis struct $ident;
         impl $crate::__macro::ToTokens for $ident {
