@@ -1,0 +1,15 @@
+[package]
+name = "quote-alias"
+version = "1.0.0"
+edition = "2021"
+authors = ["Diego Sesmas Estrada <diegos7167@gmail.com>"]
+license = "MIT OR Apache-2.0"
+description = "A helper macro for easily reusing static token streams"
+keywords = ["macros", "proc-macro", "quote", "syn"]
+categories = ["development-tools::procedural-macro-helpers"]
+documentation = "https://docs.rs/quote-alias"
+repository = "https://github.com/TheCodeSquid/quote-alias"
+
+[dependencies]
+quote = "1"
+proc-macro2 = "1"
