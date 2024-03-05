@@ -1,4 +1,4 @@
-//! The [`alias!`] macro can be used to assign convenient identifiers to token streams.
+//! The [`alias!`] macro can be used to assign token streams to convenient identifiers.
 //!
 //! ```
 //! use quote::quote;
@@ -9,7 +9,7 @@
 //! }
 //!
 //! # fn main() {
-//! // Will expand to: `foo_crate::Foo::new()`
+//! // same as: quote! { my_crate::Foo::new() };
 //! let create_foo = quote! { #Foo::new() };
 //! # }
 //! ```
@@ -22,7 +22,7 @@ pub mod __macro {
     pub use quote::{quote, ToTokens};
 }
 
-/// Assigns an identifier to a token stream.
+/// Assigns a token stream to an identifier.
 ///
 /// This is done by generating a unit struct that implements [`ToTokens`].
 /// The struct can be then interpolated in [`quote!`] invocations or have its `ToTokens` methods called directly.
@@ -38,20 +38,20 @@ pub mod __macro {
 ///     /// `Foo` from `my_crate::foo`
 ///     pub Foo(my_crate::foo::Foo),
 ///     
-///     this_and_that {{
+///     this_and_that {
 ///         my_crate::this();
 ///         my_crate::that();
-///     }},
+///     },
 /// }
 ///
 /// # fn main() {
 /// // same as: quote! { my_crate::foo::Foo::new() };
 /// quote! { #Foo::new() };
 ///
-/// // same as: quote! {{
+/// // same as: quote! {
 /// //     my_crate::this();
 /// //     my_crate::that();
-/// // }};
+/// // };
 /// quote! { #this_and_that };
 /// # }
 /// ```
