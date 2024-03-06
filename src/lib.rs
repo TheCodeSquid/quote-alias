@@ -17,10 +17,9 @@
 //! See [`alias!`] for more detailed documentation and usage examples.
 
 #[doc(hidden)]
-pub mod __macro {
-    pub use proc_macro2::TokenStream;
-    pub use quote::{quote, ToTokens};
-}
+pub use proc_macro2::TokenStream;
+#[doc(hidden)]
+pub use quote::{quote, ToTokens};
 
 /// Assigns a token stream to an identifier.
 ///
@@ -74,9 +73,9 @@ macro_rules! alias {
         #[allow(non_camel_case_types)]
         #[derive(Clone, Copy, Debug)]
         $vis struct $ident;
-        impl $crate::__macro::ToTokens for $ident {
-            fn to_tokens(&self, tokens: &mut $crate::__macro::TokenStream) {
-                tokens.extend($crate::__macro::quote! { $($tt)* });
+        impl $crate::ToTokens for $ident {
+            fn to_tokens(&self, tokens: &mut $crate::TokenStream) {
+                tokens.extend($crate::quote! { $($tt)* });
             }
         }
     };
